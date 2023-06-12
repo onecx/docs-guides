@@ -1,1 +1,1 @@
-* xref:general:index.adoc [General]
+* xref:index.adoc[General]
