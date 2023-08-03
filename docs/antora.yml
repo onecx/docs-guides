@@ -3,7 +3,8 @@ title: Guides
 version: latest
 start_page: general:index.adoc
 nav:
-- modules/general/nav.adoc
-- modules/documentation/nav.adoc
-- modules/quarkus/nav.adoc
-- modules/bpmn/nav.adoc
+  - modules/general/nav.adoc
+  - modules/documentation/nav.adoc
+  - modules/angular/nav.adoc
+  - modules/quarkus/nav.adoc
+  - modules/bpmn/nav.adoc
