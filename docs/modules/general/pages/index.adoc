@@ -2,4 +2,4 @@
 
 
 
-include::ai_support.adoc
+include::ai_support.adoc[]
