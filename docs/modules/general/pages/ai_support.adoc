@@ -19,7 +19,7 @@ Guidelines are available at: https://continue.dev/docs/model-setup/select-provid
 
 == Install continue.dev
 
-Use https://continue.dev/docs/quickstart to install it on you ide.
+Use https://continue.dev/docs/quickstart to install it on your ide.
 
 configure continue.dev and point to you running ollama instance and define the large language model eg.: mistral
 -> open c:\Users\username\.continue\config.json and add under models
