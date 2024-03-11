@@ -51,3 +51,5 @@ configure continue.dev and point to you running ollama instance and define the l
   ],
     
 Detailed instructions can be found under: https://continue.dev/docs/model-setup/select-provider
+
+To checkout available options of development support with continue.dev https://continue.dev/docs/how-to-use-continue
