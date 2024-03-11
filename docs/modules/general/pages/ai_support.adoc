@@ -1,16 +1,14 @@
-= Installation Instructions for a Local Developer AI support
+= Installation Instructions for Local Developer AI support
 :description: A description for setting up a locally running AI for support developer on coding.
-
-== Install continue.dev
-
-Detailed instructions can be found at: https://continue.dev/docs/quickstart
 
 == Installation AI locally (Ollama)
 
 You can set up ollama either through installation or using a Docker image.
 
+=== Install on local host
 Visit https://ollama.com/download for installation instructions.
-Docker:
+
+=== Run ollama with Docker
 
 Utilize the Docker image provided by ollama
 Instructions can be found at: https://ollama.com/blog/ollama-is-now-available-as-an-official-docker-image
@@ -18,3 +16,21 @@ Setup Language Model Provider:
 
 Configure your ollama to run the desired large language model
 Guidelines are available at: https://continue.dev/docs/model-setup/select-provider
+
+== Install continue.dev
+
+Use https://continue.dev/docs/quickstart to install it on you ide.
+
+configure continue.dev and point to you running ollama instance and define the large language model eg.: mistral
+-> open c:\Users\username\.continue\config.json and add under models
+
+  "models": [
+    {
+      "title": "Mistral@LocalOllama",
+      "provider": "ollama",
+      "model": "mistral",
+      "apiBase": "http://localhost:11434/"
+    }        
+  ],
+    
+Detailed instructions can be found under: https://continue.dev/
