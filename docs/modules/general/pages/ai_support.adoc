@@ -13,7 +13,10 @@ Currently windows has only a preview version available.
 Visit https://ollama.com/download for installation instructions.
 
 Configure your ollama to run the desired large language model
+[source,sh]
+----
 ollama run mistral
+----
 
 === Run ollama with Docker
 If docker is already setup this option is propably the fastest setup, but might require some additional steps for gpu support setup.
