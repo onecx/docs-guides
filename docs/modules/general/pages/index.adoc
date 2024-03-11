@@ -1,1 +1,5 @@
 = General
+
+
+
+include::ai_support.adoc
