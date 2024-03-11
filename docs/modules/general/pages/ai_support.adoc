@@ -4,6 +4,8 @@
 == Installation AI locally (Ollama)
 
 You can set up ollama either through installation or using a Docker image.
+This will have the advantage of out of the box gpu support.
+Currently for windows there is only preview version available.
 
 === Install on local host
 Visit https://ollama.com/download for installation instructions.
@@ -19,7 +21,11 @@ Setup Language Model Provider:
 
 Configure your ollama to run the desired large language model
 
+[source,sh]
+----
 docker exec -it ollama ollama run mistral
+----
+
 
 
 == Install continue.dev
