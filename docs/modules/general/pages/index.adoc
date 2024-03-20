@@ -1,5 +1,8 @@
 = General
 
+This guide brings together the collective knowledge of the Onecx community
+around best practices for creating Onecx software products.
 
+== AI
 
-include::ai_support.adoc[]
+* xref:ai_support.adoc[Installation Instructions for Local Developer AI support]
