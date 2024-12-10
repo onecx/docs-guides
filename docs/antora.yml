@@ -5,6 +5,6 @@ start_page: general:index.adoc
 nav:
   - modules/general/nav.adoc
   - modules/documentation/nav.adoc
-  - modules/angular/nav.adoc
+  - modules/javascript/nav.adoc
   - modules/quarkus/nav.adoc
   - modules/bpmn/nav.adoc
