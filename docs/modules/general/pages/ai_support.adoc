@@ -1,11 +1,15 @@
 = Installation Instructions for Local Developer AI support
+:idprefix:
+:idseparator: -
 :description: A description for setting up a locally running AI for support developer on coding.
 
+[#installation-ai-locally]
 == Installation AI locally (Ollama)
 
 You can set up ollama either through installation or using a Docker image.
 
 
+[#install-on-localhost]
 === Install on local host
 This installation option has the advantage of out of the box gpu support.
 Currently windows has only a preview version available.
@@ -18,6 +22,7 @@ Configure your ollama to run the desired large language model
 ollama run mistral
 ----
 
+[#run-ollama-with-docker]
 === Run ollama with Docker
 If docker is already setup this option is propably the fastest setup, but might require some additional steps for gpu support setup.
 
@@ -34,6 +39,7 @@ docker exec -it ollama ollama run mistral
 
 
 
+[#install-continue-dev]
 == Install continue.dev
 
 Use https://continue.dev/docs/quickstart to install it on your ide.
