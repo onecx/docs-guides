@@ -1,8 +1,12 @@
 = General
 
+:idprefix:
+:idseparator: -
+
 This guide brings together the collective knowledge of the Onecx community
 around best practices for creating Onecx software products.
 
+[#ai]
 == AI
 
 * xref:ai_support.adoc[Installation Instructions for Local Developer AI support]
