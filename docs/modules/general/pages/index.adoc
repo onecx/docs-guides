@@ -10,3 +10,8 @@ around best practices for creating Onecx software products.
 == AI
 
 * xref:ai_support.adoc[Installation Instructions for Local Developer AI support]
+
+[#getting-started]
+== Getting Started: Hello World App
+
+* xref:getting_started.adoc[Guide to create a new OneCX Hello World App]
