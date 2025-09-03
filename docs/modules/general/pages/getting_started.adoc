@@ -17,6 +17,7 @@ We start with creating the UI structure of our "Hello World" App by running the 
 
 Please check the link:https://onecx.github.io/docs/nx-plugins/current/general/getting_started/prerequisites.html[prerequisites for using the generator] before starting.
 
+[#setup-new-angular-workspace]
 ==== Setup New Angular Workspace
 
 First, we can generate the basic project structure and required files for the application.
@@ -32,6 +33,7 @@ NOTE: Details to generating a new OneCX Angular workspace can be found link:http
 
 Navigate into the newly created hello-world directory and install the packages with `npm install`. 
 
+[#adding-feature-module]
 ==== Add a Feature Module
 
 Now we want to add a feature module to our application, that encapsulates the functionality of our new feature "hello". Therefore a new folder with the name of the feature module will be created in the `/src/app/` directory.
@@ -44,6 +46,7 @@ nx generate @onecx/nx-plugin:feature hello
 ----
 NOTE: Details to generating a feature module can be found link:https://onecx.github.io/docs/nx-plugins/current/general/getting_started/feature-module.html[here].
 
+[#adding-search-page]
 ==== Add a Search Page
 
 Additionally we can add a search feature, that includes a table and allows users to search for an item in a certain column.
@@ -55,6 +58,7 @@ nx generate @onecx/nx-plugin:search hello
 ----
 NOTE: Details to generating a search page can be found link:https://onecx.github.io/docs/nx-plugins/current/general/getting_started/search-page.html[here].
 
+[#adding-details-page]
 ==== Add a Details Page
 
 Now we can also create a details page for the items in the search results by running:
@@ -140,7 +144,8 @@ The frontend of your "Hello World" application is now configured.
 [#creating-the-bff]
 == Creating the BFF
 
-As we did for the UI, we can sync the app with your local environment for the bff and add the bff to our hello-world.docker-compose.yml as well:
+As we did for the UI, we can sync the app with your local environment for the bff and add the bff to our hello-world.docker-compose.yml as well. The ./helm/values.yaml path refers to the values.yaml file of the bff.
+
 [source,sh]
 ----
 npx @onecx/local-env-cli sync bff hello-world /hello-world ./helm/values.yaml -e /path/to/onecx-local-env
@@ -150,7 +155,8 @@ npx @onecx/local-env-cli docker hello-world create hello-world helloWorld -e /pa
 [#creating-the-svc]
 == Creating the SVC
 
-As we did for the UI and BFF, we can sync the app with your local environment for the svc and add the svc to our hello-world.docker-compose.yml as well:
+As we did for the UI and BFF, we can sync the app with your local environment for the svc and add the svc to our hello-world.docker-compose.yml as well. The ./helm/values.yaml path refers to the values.yaml file of the svc.
+
 [source,sh]
 ----
 npx @onecx/local-env-cli sync svc hello-world /hello-world ./helm/values.yaml -e /path/to/onecx-local-env
