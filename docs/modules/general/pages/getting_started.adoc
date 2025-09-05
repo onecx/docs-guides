@@ -125,18 +125,18 @@ NOTE: More details to the onecx-local-env-cli can be found link:https://github.c
 [#start-environment]
 ==== Start the Environment and Import Data
 
-Now all services can be started with running the following command:
+First we need to import the initial data to set up the environment correctly:
+
+[source,sh]
+----
+./import-onecx.sh
+----
+
+Now the service can be started with running the following command:
 
 [source,sh]
 ----
 docker compose -f hello-world.docker-compose.yml --profile base up -d
-----
-
-Then the data can be imported:
-
-[source,sh]
-----
-bash import-onecx.sh
 ----
 
 The frontend of your "Hello World" application is now configured.
