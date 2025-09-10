@@ -76,6 +76,7 @@ tags:
 * `responses`: possible response-codes including description and object definitions.
 For response description please use the following pattern: `{Resource} {operation} {status}` +
 Example:
+
 ----
     Theme created successfully.
     Theme not found.
@@ -93,6 +94,18 @@ Examples: +
  `GetUserResponse` +
 
  * Do not include the suffix `DTO` in your object names. This should and will be added by the generator.
+ * Include the actual resource inside the `resource` field. +
+ Example:
+
+ ----
+   GetThemeResponse:
+   type: object
+   properties:
+    resource:
+     $ref: '#/components/schemas/Theme'
+ ----
+ 
+ * If you plan to just return a sub-set of a resource, e.g. as result of an `/search` endpoint, name your object with the suffix `Abstract`. Like this for example: `ThemeAbstract`.
 
 == HTTP Methods
 
@@ -152,9 +165,9 @@ and the following fields in the response:
     - size:
         format: int32
         type: integer
-        totalPages:
-          format: int64
-          type: integer
+    - totalPages:
+        format: int64
+        type: integer
 ----
 [NOTE]
 ====
