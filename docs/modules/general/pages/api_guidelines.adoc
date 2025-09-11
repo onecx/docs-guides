@@ -1,6 +1,5 @@
 = API Guidelines
 :lang: en
-:toc: left
 :sectnums:
 
 == Introduction
@@ -83,6 +82,8 @@ Example:
 ----
 
 == DTO Naming Convention
+[NOTE]
+Use the following conventions for the naming of responses and request bodies for all HTTP Methods.
 
 [source]
 ----
@@ -94,16 +95,6 @@ Examples: +
  `GetUserResponse` +
 
  * Do not include the suffix `DTO` in your object names. This should and will be added by the generator.
- * Include the actual resource inside the `resource` field. +
- Example:
-
- ----
-   GetThemeResponse:
-   type: object
-   properties:
-    resource:
-     $ref: '#/components/schemas/Theme'
- ----
  
  * If you plan to just return a sub-set of a resource, e.g. as result of an `/search` endpoint, name your object with the suffix `Abstract`. Like this for example: `ThemeAbstract`.
 
@@ -113,12 +104,20 @@ Examples: +
 
 [source]
 ----
-GET /apiVersion/resources/{id}
+GET /{apiVersion}/{resources}/{id}
 ----
 
 * No request body.
 * Returns `200 OK` with list or single resource.
 * Returns `404 NOT FOUND` if entity does not exist.
+* Include the actual response resource inside the `resource` field. +
+ Example:
+
+   GetThemeResponse:
+   type: object
+   properties:
+    resource:
+     $ref: '#/components/schemas/Theme'
 
 [NOTE]
 ====
@@ -130,8 +129,8 @@ Make sure to include the `modificationCount` field to make updates possible.
 
 [source]
 ----
-POST /apiVersion/resources
-POST /apiVersion/resources/search
+POST /{apiVersion}/{resources}
+POST /{apiVersion}/{resources}/search
 ----
 
 * Used for creation, search, or import.
@@ -141,33 +140,37 @@ POST /apiVersion/resources/search
 ==== Search
 * To support pagination include the following mandatory criteria:
 ----
-    - pageNumber:
-        format: int32
-        description: The number of page.
-        default: 0
-        type: integer
-    -pageSize:
-        format: int32
-        description: The size of page
-        default: 100
-        maximum: 1000
-        type: integer
+    pageNumber:
+      format: int32
+      description: The number of page.
+      default: 0
+      type: integer
+    pageSize:
+      format: int32
+      description: The size of page
+      default: 100
+      maximum: 1000
+      type: integer
 ----
 and the following fields in the response: 
 ----
-    - totalElements:
-        format: int64
-        description: The total elements in the resource.
-        type: integer
-    - number:
-        format: int32
-        type: integer
-    - size:
-        format: int32
-        type: integer
-    - totalPages:
-        format: int64
-        type: integer
+    stream:
+      type: array
+      items:
+       $ref: '#/components/schemas/ThemeAbstract'
+    totalElements:
+      format: int64
+      description: The total elements in the resource.
+      type: integer
+    number:
+      format: int32
+      type: integer
+    size:
+      format: int32
+      type: integer
+    totalPages:
+      format: int64
+      type: integer
 ----
 [NOTE]
 ====
@@ -178,23 +181,31 @@ Return abstracts in your page result with a minimum set of needed fields to redu
 
 [source]
 ----
-PUT /apiVersion/resources/{id}
+PUT /{apiVersion}/{resources}/{id}
 ----
 
 * Full update of business entity.
 * Returns `200 OK`. Optional with updated resource as response.
 * Returns `400 BAD REQUEST` if the request fails (e.g. constraint violation)
 * Returns `404 NOT FOUND` if the targeted entity is not found.
+* Include the actual response resource inside the `resource` field. +
+ Example:
 
+   UpdateThemeResponse:
+   type: object
+   properties:
+    resource:
+     $ref: '#/components/schemas/Theme'
 [NOTE]
 ====
 Make sure to include the full business entity and the most recent `modificationCount` retrieved by the previous `GET` request to avoid optimisticlock exceptions.
 ====
+
 === PATCH
 
 [source]
 ----
-PATCH /apiVersion/resources/{id}
+PATCH /{apiVersion}/{resources}/{id}
 ----
 
 * Partial update of resource.
@@ -205,7 +216,7 @@ PATCH /apiVersion/resources/{id}
 
 [source]
 ----
-DELETE /apiVersion/resources/{id}
+DELETE /{apiVersion}/{resources}/{id}
 ----
 
 * Idempotent deletion.
