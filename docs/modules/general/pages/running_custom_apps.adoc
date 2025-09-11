@@ -345,7 +345,7 @@ Now you can start your application with `npm start` and every change in the appl
 You can add multiple custom apps to your `docker-compose.yaml` and run them together. Ensure each app has a unique name, port, and base path. Use the same build and run strategies as above for each app.
 
 [#testing-changes-to-existing-onecx-core-apps]
-== 2.5 Testing Changes to Existing OneCX Core Apps
+=== 2.5 Testing Changes to Existing OneCX Core Apps
 
 If you have made changes to an existing OneCX core app (e.g., OneCX Theme UI) it can be tested the same way as for custom applications.
 Build the app locally and follow the xref:manual-image-build[manual image build process] above. Replace the image reference in `docker-compose.yaml` with your locally built image, start the environment and verify your changes in the OneCX Shell.
