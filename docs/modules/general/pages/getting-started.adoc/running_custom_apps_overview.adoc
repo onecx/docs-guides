@@ -1,0 +1,37 @@
+[#running-custom-apps-overview]
+= Running Custom Applications in OneCX
+
+After xref:getting_started.adoc[creating a new application], we want to run it in our local environment. 
+This guide walks you through the process of setting up, running, testing, and removing custom applications in the OneCX environment. It covers different ways to achieve these tasks using a custom "Hello World" application as an example.
+
+This page provides an overview of the process for running custom applications in the OneCX environment. Use this as your starting point to understand the available workflows.
+
+[#application-setup]
+== 1. Application Setup
+Begin by setting up your application to make sure all relevant application data, permissions, and permission assignments are present in the database. Then we need to define our application, microservice, Ui Component and register the application in our workspace. There are two main approaches to add the necessary data. You can either create the import files and update the container definitions manually, or you can use the `onecx-local-env-cli` to automate the process. The recommended method depends on how your application was created:
+
+* If you used the OneCX generator as outlined in the xref:getting_started.adoc[Getting Started guide], you can quickly set up your application using the onecx-local-env-cli. See the detailed steps here: xref:app_setup_cli.adoc[Application Setup using OneCX CLI]
+
+* If your application was created manually or lacks the Helm structure provided by the OneCX generator, you can also manually create the setup in the onecx-local-env: xref:app_setup_manual.adoc[Manual Application Setup].
+
+[#running-and-testing-applications]
+== 2. Running and Testing Applications
+After the necessary import and docker files were created in step 1, you can run and test the application in the OneCX Shell.
+
+* automatic image build, possible caching issues: xref:image_build_automatic.adoc[Automatic Image Build]
+
+* manual image build, no caching issues: xref:image_build_manual.adoc[Manual Image Build]
+
+== 3. Local Applications
+
+* hot reload: xref:enable_hot_reload.adoc[Hot Reload]
+
+* multiple application: xref:run_multiple_apps.adoc[Multiple Applications]
+
+== 4. Testing Changes to Existing OneCX Core Apps
+
+* testing changes to existing OneCX core apps: xref:testing_existing_core_apps[Testing Core Apps]
+
+== 5. Removal of Custom App
+
+* clean removal of a custom app: xref:app_removal[Removal of Custom App]

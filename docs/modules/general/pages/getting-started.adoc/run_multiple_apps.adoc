@@ -1,0 +1,4 @@
+[#running-multiple-local-apps]
+= Running Multiple Local Apps Simultaneously
+
+You can add multiple custom apps to your `docker-compose.yaml` and run them together. Ensure each app has a unique name, port, and base path. Use the same build and run strategies as above for each app.

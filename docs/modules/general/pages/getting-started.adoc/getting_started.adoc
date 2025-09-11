@@ -122,25 +122,6 @@ Now a `hello-world.docker-compose.yaml` should be created in the onecx-local-env
 
 NOTE: More details to the onecx-local-env-cli can be found link:https://github.com/onecx/onecx-local-env-cli/[here].
 
-[#start-environment]
-==== Start the Environment and Import Data
-
-First we need to import the initial data to set up the environment correctly:
-
-[source,sh]
-----
-./import-onecx.sh
-----
-
-Now the service can be started with running the following command:
-
-[source,sh]
-----
-docker compose -f hello-world.docker-compose.yml --profile base up -d
-----
-
-The frontend of your "Hello World" application is now configured.
-
 [#creating-the-bff]
 == Creating the BFF
 
@@ -163,3 +144,4 @@ npx @onecx/local-env-cli sync svc hello-world /hello-world ./helm/values.yaml -e
 npx @onecx/local-env-cli docker hello-world create hello-world helloWorld -e /path/to/onecx-local-env -s svc
 ----
 
+*Now that the services are created, the application can be run in the OneCX environment as described xref:running_custom_apps.adoc#running-and-testing-applications[here].*
