@@ -1,25 +1,12 @@
 [#testing-changes-to-existing-onecx-core-apps]
 = Testing Changes to Existing OneCX Core Apps
 
-If you have made changes to an existing OneCX core app (e.g., OneCX Theme UI) it can be tested the same way as for custom applications.
-Build the app locally and follow the xref:manual-image-build[manual image build process] above. Replace the image reference in `docker-compose.yaml` with your locally built image, start the environment and verify your changes in the OneCX Shell.
+If you've modified an existing OneCX core app (e.g., OneCX Theme UI), you can test it using the same methods available for custom applications.
 
-If you need to do changes in `shell-ui` and want to test your changes in the `onecx-local-env`, you can edit the `docker-compose.yaml` in your local environment and update the `onecx-shell-ui` service as follows:
+You can use the same options as described in xref:running_custom_apps_overview.adoc#running-and-testing-applications[Running and Testing Applications]:
 
-[source,yaml]
-----
-onecx-shell-ui:
-    # image: localhost/onecx-shell-ui:latest
-    build:
-        context: /path/to/onecx-shell-ui
-        dockerfile: Dockerfile
-----
+* You can follow the xref:image_build_automatic.adoc[automatic image build process] and use the build context in `docker-compose.yaml` to build the image from your local application each time you run Docker Compose.
 
-With this configuration, Docker Compose will build the image from your local source. To build (or rebuild) the image and start the service, run:
+* You can follow the xref:image_build_manual.adoc[manual image build process] to build a local image in the application and adjust the .env UI variable to use your local image.
 
-[source,sh]
-----
-docker compose --profile base up -d
-----
-
-Now you can build the shell locally with `npm run build`, then rebuild the Docker image, and test your changes within the local environment.
+* You can set up your application for hot reloading as described in xref:enable_hot_reload.adoc[Hot Reload] for faster development and testing.

@@ -1,8 +1,9 @@
 [#manual-image-build]
 = Manual Image Build
-To avoid caching issues and ensure the latest code is used, it is recommended to manually build the Docker image after building your app locally.
 
-For that first go to your application and *remove the cache and dist folder to avoid using cached images*:
+To avoid caching issues and ensure the latest code is always used, it is recommended to manually build the Docker image after building your app locally.
+
+First, go to your application and *remove the cache and dist folder to avoid using cached images*:
 
 [source,sh]
 ----
@@ -17,7 +18,7 @@ npm run build
 docker build --no-cache -t helloworld_local .
 ----
 
-The local images need to be added to your `.env` file in the onecx-local-env as shown xref:automatic-image-build[above], but the UI should refer to the locally built image:
+Now in the `onecx-local-env` navigate to the .env file at the same level as your `hello-world.docker-compose.yaml`. The image name for `HELLO_WORLD_UI` should match the name you used when building the local docker image in your application.
 
 [source,env]
 ----
@@ -37,7 +38,9 @@ and start the service with:
 
 [source,sh]
 ----
-docker compose -f hello-world.docker-compose.yml --profile base up -d
+docker compose -f hello-world.docker-compose.yaml --profile base up -d
 ----
 
-Now the local image is used and changes in the application should be reflected under `http://local-proxy/mfe/helloWorld/hello` after rebuilding the image of the application.
+Now the local image is used and changes in the application should be reflected under `http://local-proxy/mfe/helloWorld/hello` after rebuilding the image of the application with `docker build --no-cache -t helloworld_local .`.
+
+If you want to your application to reflect changes immediately without rebuilding the image each time, you can set up your application for hot reloading by following these steps in the xref:enable_hot_reload[Enable Hot Reload] section.

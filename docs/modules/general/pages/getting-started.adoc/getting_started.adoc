@@ -125,7 +125,7 @@ NOTE: More details to the onecx-local-env-cli can be found link:https://github.c
 [#creating-the-bff]
 == Creating the BFF
 
-As we did for the UI, we can sync the app with your local environment for the bff and add the bff to our hello-world.docker-compose.yml as well. The ./helm/values.yaml path refers to the values.yaml file of the bff.
+As we did for the UI, we can sync the app with your local environment for the bff and add the bff to our hello-world.docker-compose.yaml as well. The ./helm/values.yaml path refers to the values.yaml file of the bff.
 
 [source,sh]
 ----
@@ -136,7 +136,7 @@ npx @onecx/local-env-cli docker hello-world create hello-world helloWorld -e /pa
 [#creating-the-svc]
 == Creating the SVC
 
-As we did for the UI and BFF, we can sync the app with your local environment for the svc and add the svc to our hello-world.docker-compose.yml as well. The ./helm/values.yaml path refers to the values.yaml file of the svc.
+As we did for the UI and BFF, we can sync the app with your local environment for the svc and add the svc to our hello-world.docker-compose.yaml as well. The ./helm/values.yaml path refers to the values.yaml file of the svc.
 
 [source,sh]
 ----
@@ -144,4 +144,4 @@ npx @onecx/local-env-cli sync svc hello-world /hello-world ./helm/values.yaml -e
 npx @onecx/local-env-cli docker hello-world create hello-world helloWorld -e /path/to/onecx-local-env -s svc
 ----
 
-*Now that the services are created, the application can be run in the OneCX environment as described xref:running_custom_apps.adoc#running-and-testing-applications[here].*
+*Now that the services are created, the application can be run in the OneCX environment as described xref:running_custom_apps_overview.adoc#running-and-testing-applications[here].*

@@ -1,35 +1,50 @@
 [#automatic-image-build]
 = Automatic Image Build
 
-With the build context and the image specified in `docker-compose.yaml`, Docker will automatically build the image. 
+If you want to develop or test local changes, you can use Docker's build context to build the image from your local source code each time you run `docker compose`. With the build context from your local application, Docker will automatically build the image.
 
-For that the image name needs to be added to the `.env` file at the same level as your new `hello-world.docker-compose.yaml`. Create the file, if it doesn't exists yet and add the following lines:
+To use this approach, first update your `hello-world.docker-compose.yaml` to use a `build` section instead of an image reference. Adjust the `context` to your local app path and reference the application's Dockerfile as shown in the example below:
 
-[source,env]
+[source,yaml]
 ----
-HELLO_WORLD_SVC=${DOCKER_REPO}/hello-world-svc:main-native
-HELLO_WORLD_BFF=${DOCKER_REPO}/hello-world-bff:main-native
-HELLO_WORLD_UI=${DOCKER_REPO}/hello-world-ui:main
+include:
+  - docker-compose.yaml
+services:
+  hello-world-ui:
+    # image: ${HELLO_WORLD_UI}
+    build:
+      context: /path/to/hello-world-ui
+      dockerfile: Dockerfile
+    environment:
+      APP_BASE_HREF: /mfe/helloWorld/
+      APP_ID: hello-world-ui
+      PRODUCT_NAME: hello-world
+    depends_on:
+      hello-world-bff:
+        condition: service_healthy
+    labels:
+      - traefik.http.services.hello-world-ui.loadbalancer.server.port=8080
+      - traefik.http.routers.hello-world-ui.rule=Host(`local-proxy`)&&PathPrefix(`/mfe/helloWorld/`)
+    networks:
+      - default
+    profiles:
+      - base
 ----
 
-Now you can import the initial data by running:
+Now you can import the initial data in the `onecx-local-env` by running:
 
 [source,sh]
 ----
 ./import-onecx.sh
 ----
 
-Now the application needs to be built with `npm run build` and the onecx-local-env can be started with:
+The application needs to be built with `npm run build` and the `onecx-local-env` can be started with:
 
 [source,sh]
 ----
-docker compose -f hello-world.docker-compose.yml --profile base up -d
+docker compose -f hello-world.docker-compose.yaml --profile base up -d
 ----
 
-NOTE: To ensure the application runs correctly, make sure to add entries for `hello-world-bff` and `hello-world-svc` to your system's hosts file (e.g., `C:\Windows\System32\drivers\etc\hosts` on Windows).
-
-For more details on these commands and necessary configurations, refer to the link:https://onecx.github.io/docs/onecx-local-env/current/general/index.html[onecx-local-env documentation].
-
-Now the application should be accessible under `http://local-proxy/mfe/helloWorld/hello` in the OneCX Shell.
+Your application will now be built and available at ``http://local-proxy/onecx-shell/admin/helloWorld/hello`` in the OneCX Shell. If you make changes in your application, you need to rebuild it with `npm run build` and restart the `onecx-local-env` with the command above.
 
 *This method of running the application may lead to potential caching issues that could prevent changes from being reflected immediately.*

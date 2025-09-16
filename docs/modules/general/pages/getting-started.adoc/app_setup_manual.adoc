@@ -87,7 +87,6 @@ The permissions need to match the permissions defined in your applications `valu
 Then the UI microservice needs to be defined by creating the following file in *imports > product-store > microservices*.
 
 NOTE: The file name must match the shown pattern consisting of *product name* (here: hello-world) and *microservice*(hello-world-ui).
-For the bff and svc the same pattern applies, just replace *microservice* with the corresponding product names.
 
 .hello-world_hello-world-ui.json
 [source,json]
@@ -101,6 +100,8 @@ For the bff and svc the same pattern applies, just replace *microservice* with t
 ----
 
 * The name needs to match the name of the microservice.
+
+For BFF and SVC microservices, similar files need to be created in the same folder. The same pattern as for the UI applies, just replace *microservice* with the corresponding product names "hello-world-bff" and "hello-world-svc".
 
 === 4. Create Product Definition
 We also need to add the product definition by creating the following file in *imports > product-store > products*.
@@ -174,3 +175,5 @@ services:
 * The `profiles: base` entry ensures your service is included when starting the minimal local environment.
 
 Now all necessary files are created and you can run your application in the OneCX environment as described in xref:running_custom_apps_overview.adoc#running-and-testing-applications[Running and Testing Applications].
+
+

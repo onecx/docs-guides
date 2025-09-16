@@ -1,8 +1,8 @@
 [#enable-hot-reload]
 = Enable Hot Reload
 
-For development purposes, you can enable hot reload in your local environment. This allows you to see changes in the application immediately without rebuilding the image.
-For that we need to adjust the routing configuration in the traefik configurations of the docker image by replacing the labels section of the hello-world-ui service in the `hello-world.docker-compose.yaml` with the following lines.
+For development purposes, you can enable hot reload in your local environment. This allows you to see changes in the application immediately without rebuilding the image. 
+For that we need to adjust the routing configuration in the traefik configurations of the docker image by replacing the labels section of the hello-world-bff service in the `hello-world.docker-compose.yaml` with the following lines.
 
 [source,yaml]
 ----
@@ -11,12 +11,12 @@ For that we need to adjust the routing configuration in the traefik configuratio
 - "traefik.http.routers.local_mfe.service=local_mfe@file"
 ----
 
-Make sure the `PathPrefix` is set correctly.
+The value of `PathPrefix` in the traefik label should match the value of APP_BASE_HREF in the environment section of your docker-compose.yaml.
 Now, routing is handled directly to your locally running application instead of the Docker container.
 
 To make sure, that traefik can access the local application, enhance the `npm start` script in the applications `package.json` with `--host 0.0.0.0 --disable-host-check`.
 
-Additionally the PROXY_CONFIG in the `proxy.config.js` of the UI application needs to be updated like this. Note that the path needs to be adjusted accordingly.
+Additionally the PROXY_CONFIG in the `proxy.config.js` of the UI application needs to be updated like this. Note that the path needs to be adjusted according to the `PathPrefix` value in the traefik label.
 
 [source,javascript]
 ----
@@ -34,6 +34,20 @@ const PROXY_CONFIG = {
 }
 ----
 
-If your app runs on the standard port 4200, no more configuration is needed, as this is already set up for the `local_mfe` service under `./init-data/traefik/traefik-services.yml` in the onecx-local-env. The traefik config in the `docker-compose.yaml` only needs to be changed, if a different port is used.
+If your app runs on the standard port 4200, you can start your application with `npm start`, restart your containers with `docker compose --profile base up -d` and every change in the application should be reflected immediately under `http://local-proxy/onecx-shell/admin/helloWorld/hello`.
 
-Now you can start your application with `npm start` and every change in the application should be reflected immediately under `http://local-proxy/mfe/helloWorld/hello`.
+== Note for different ports
+
+If your application uses a *port other than 4200*, you need to first update the port in the `url` field of the `local_mfe` service in the `./init-data/traefik/traefik-services.yml` file within your `onecx-local-env`. Set the port to match the one your application is running on.
+
+[source,yaml]
+----
+local_mfe:
+    loadBalancer:
+      servers:
+      - url: "http://host.docker.internal:4200/"
+----
+
+Now you can start your application with `npm start` and restart your containers with `docker compose --profile base up -d`. Every change in the application should be reflected immediately under `http://local-proxy/onecx-shell/admin/helloWorld/hello`.
+
+If you want to run multiple applications on different ports, see the xref:run_multiple_apps.adoc[Running Multiple Local Apps Simultaneously] section.
