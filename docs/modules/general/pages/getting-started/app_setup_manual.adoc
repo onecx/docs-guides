@@ -6,6 +6,7 @@ You can set up the custom application in OneCX by manually creating the required
 [#creating-import-files]
 == Create Import Files
 
+[#create-microfrontend-file]
 === 1. Create Microfrontend File
 First we need to define our application by creating the following file in *imports > product-store > microfrontends*.
 
@@ -36,6 +37,7 @@ NOTE: The file name must match the shown pattern consisting of *product name* (h
 * The `exposedModule` should match the module name, that is exposed in your app's webpack config.
 * The `tagName` can be found in the remoteModule ts file in the ngDoBootstrap() function.
 
+[#create-permissions-file]
 === 2. Create Permissions File
 We also need to add the permissions for our application by creating the following file in *imports > product-store > permissions*.
 
@@ -83,6 +85,7 @@ We also need to add the permissions for our application by creating the followin
 
 The permissions need to match the permissions defined in your applications `values.yaml`.
 
+[#create-microservice-file]
 === 3. Create Microservice File
 Then the UI microservice needs to be defined by creating the following file in *imports > product-store > microservices*.
 
@@ -103,6 +106,7 @@ NOTE: The file name must match the shown pattern consisting of *product name* (h
 
 For BFF and SVC microservices, similar files need to be created in the same folder. The same pattern as for the UI applies, just replace *microservice* with the corresponding product names "hello-world-bff" and "hello-world-svc".
 
+[#create-product-definition]
 === 4. Create Product Definition
 We also need to add the product definition by creating the following file in *imports > product-store > products*.
 
@@ -122,6 +126,7 @@ NOTE: The file name must match the *product name* (here: hello-world).
 
 * The `basePath` defines the URL path where the application will be accessible later.
 
+[#register-application-in-workspace]
 === 5. Register Application in Workspace
 To register the application in the workspace, we can add it to the `products` array in the `onecx_admin.json` file located in *imports > workspace*.
 
@@ -144,7 +149,7 @@ To register the application in the workspace, we can add it to the `products` ar
 
 [#creating-docker-compose]
 == Create Docker Compose Entry
-Now we need to add the container definition for our application by creating a new `hello-world.docker-compose.yaml` at the same level as the `docker-compose.yaml`. This file should define the image, environment variables, labels for traefik, network, and profiles. For our Hello World app, it looks like this:
+Now we need to add the container definition for our application by creating a new `hello-world.docker-compose.yaml` at the same level as the `docker-compose.yaml`. This file should define the image, environment variables, labels for traefik, network, and profiles. For our Hello World app UI, it looks like this:
 
 .hello-world.docker-compose.yaml
 [source,yaml]

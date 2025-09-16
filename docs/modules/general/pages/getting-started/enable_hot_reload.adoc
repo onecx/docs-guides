@@ -36,6 +36,7 @@ const PROXY_CONFIG = {
 
 If your app runs on the standard port 4200, you can start your application with `npm start`, restart your containers with `docker compose --profile base up -d` and every change in the application should be reflected immediately under `http://local-proxy/onecx-shell/admin/helloWorld/hello`.
 
+[#note-different-ports]
 == Note for different ports
 
 If your application uses a *port other than 4200*, you need to first update the port in the `url` field of the `local_mfe` service in the `./init-data/traefik/traefik-services.yml` file within your `onecx-local-env`. Set the port to match the one your application is running on.
