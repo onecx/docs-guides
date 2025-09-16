@@ -9,18 +9,19 @@ When you encounter an issue like an injection error, application is not loading,
 Make sure that the App is OneCX compatible and you followed the guidelines.
 
 == Webpack Configuration
-Verify if all necessary packages are shared in your webpack.config.js:
+* Verify if all necessary packages are shared in your webpack.config.js:
 
-* angular packages
-* onecx packages
-* rxjs
-* primeng
-* ngx-translate
+** angular packages
+** onecx packages
+** rxjs
+** primeng
+** ngx-translate
 
-Check in your package.json which of the mentioned packages are installed:
+* Check in your package.json which of the mentioned packages are installed:
 
 .Example package.json
 ----
+...
 "dependencies": {
     ...
     "@angular/core": "^18.2.12",
@@ -34,64 +35,126 @@ Check in your package.json which of the mentioned packages are installed:
     "rxjs": "~7.8.1",
     ...
   },
+...
 ----
 
-Check your webpack.config.json if those packages are shared and add them if they are missing:
+* Check your webpack.config.json if those packages are shared and add them if they are missing:
 
+.Example webpack.config.js
 [cols="1a,1a",options="header"]
 |===
 | Correct (✓)
-| Wrong (✗)
+| Incorrect (✗)
 
 |
 .webpack.config.js
 ----
-shared: share({
-    '@angular/common': { requiredVersion: 'auto', includeSecondaries: { skip: ['@angular/common/http/testing'] } },
-    '@angular/common/http': { requiredVersion: 'auto', includeSecondaries: true },
+...
+  shared: share({
+    '@angular/common': {
+      requiredVersion: 'auto',
+      includeSecondaries: { skip: ['@angular/common/http/testing'] },
+    },
+    '@angular/common/http': {
+      requiredVersion: 'auto',
+      includeSecondaries: true,
+    },
     '@angular/core': { requiredVersion: 'auto', includeSecondaries: true },
     '@angular/forms': { requiredVersion: 'auto', includeSecondaries: true },
-    '@angular/platform-browser': { requiredVersion: 'auto', includeSecondaries: true },
+    '@angular/platform-browser': {
+      requiredVersion: 'auto',
+      includeSecondaries: true,
+    },
     '@angular/router': { requiredVersion: 'auto', includeSecondaries: true },
     '@ngx-translate/core': { requiredVersion: 'auto' },
     primeng: { requiredVersion: 'auto', includeSecondaries: true },
     rxjs: { requiredVersion: 'auto', includeSecondaries: true },
     '@onecx/accelerator': { requiredVersion: 'auto', includeSecondaries: true },
-    '@onecx/integration-interface': { requiredVersion: 'auto', includeSecondaries: true },
+    '@onecx/integration-interface': {
+      requiredVersion: 'auto',
+      includeSecondaries: true,
+    },
+    ...
   }),
+...
 ----
 
 |
 .webpack.config.js
 ----
+...
 shared: share({
-    '@angular/common': { requiredVersion: 'auto', includeSecondaries: { skip: ['@angular/common/http/testing'] } },
-    '@angular/common/http': { requiredVersion: 'auto', includeSecondaries: true },
+    '@angular/common': {
+      requiredVersion: 'auto',
+      includeSecondaries: { skip: ['@angular/common/http/testing'] },
+    },
+    '@angular/common/http': {
+      requiredVersion: 'auto',
+      includeSecondaries: true,
+    },
     '@angular/forms': { requiredVersion: 'auto', includeSecondaries: true },
-    '@angular/platform-browser': { requiredVersion: 'auto', includeSecondaries: true },
+    '@angular/platform-browser': {
+      requiredVersion: 'auto',
+      includeSecondaries: true,
+    },
     '@angular/router': { requiredVersion: 'auto', includeSecondaries: true },
     '@ngx-translate/core': { requiredVersion: 'auto' },
     primeng: { requiredVersion: 'auto', includeSecondaries: true },
-    '@onecx/accelerator': { requiredVersion: 'auto', includeSecondaries: true }
+    '@onecx/accelerator': { requiredVersion: 'auto', includeSecondaries: true },
+    ...
   }),
+...
 ----
 |===
 
 == Installed Packages
-Verify the OneCX library version in your package.json
-Make sure you have the latest minor version of OneCX libraries which you can look up in npmjs.com
+* Verify the OneCX library version in your package.json
 
-Verify if all shared packages have the caret '^' sign in your package.json (except for rxjs it is a tilde '~')
-Check your webpack.config.js which packages are being shared:
+** Make sure you have the latest minor version of OneCX libraries which you can look up in npmjs.com.
 
+** Verify if all shared packages have the caret '^' sign in your package.json (except for rxjs it is a tilde '~').
+
+* For that, first check your webpack.config.js which packages are being shared:
+
+.Example webpack.config.js
+----
+...
+    shared: share({
+    '@angular/common': {
+      requiredVersion: 'auto',
+      includeSecondaries: { skip: ['@angular/common/http/testing'] },
+    },
+    '@angular/common/http': {
+      requiredVersion: 'auto',
+      includeSecondaries: true,
+    },
+    '@angular/core': { requiredVersion: 'auto', includeSecondaries: true },
+    '@angular/forms': { requiredVersion: 'auto', includeSecondaries: true },
+    '@angular/platform-browser': {
+      requiredVersion: 'auto',
+      includeSecondaries: true,
+    },
+    '@angular/router': { requiredVersion: 'auto', includeSecondaries: true },
+    '@ngx-translate/core': { requiredVersion: 'auto' },
+    primeng: { requiredVersion: 'auto', includeSecondaries: true },
+    '@onecx/accelerator': { requiredVersion: 'auto', includeSecondaries: true },
+    ...
+  }),
+...
+----
+
+* Then check if the correct range (caret '^' or tilde '~' for rxjs) is present for the shared packages in your package.json
+
+.Example package.json
 [cols="1a,1a",options="header"]
 |===
 | Correct (✓)
-| Wrong (✗)
+| Incorrect (✗)
 
 |
 .package.json
 ----
+...
 "dependencies": {
     ...
     "@angular/common": "^18.2.12",
@@ -106,11 +169,13 @@ Check your webpack.config.js which packages are being shared:
     "rxjs": "~7.8.1",
     ...
   },
+...
 ----
 
 |
 .package.json
 ----
+...
 "dependencies": {
     ...
     "@angular/common": "18.2.12",
@@ -125,6 +190,7 @@ Check your webpack.config.js which packages are being shared:
     "rxjs": "7.8.1",
     ...
   },
+...
 ----
 |===
 
@@ -144,10 +210,11 @@ Do a clean install and build of the App:
 * Build the App
 
 == Application Setup/Settings
-Verify if the Remote Module name in the webpack.config.js is the same as the Remote Module setting in the Application Store.
+* Verify if the Remote Module name in the webpack.config.js is the same as the Remote Module setting in the Application Store.
 
-Navigate to the Application Store → open the App → click on the 'Components' tab → open the 'Module' UI Component → check App ID
+* Navigate to the Application Store → open the App → click on the 'Components' tab → open the 'Module' UI Component → check App ID
 
+.Example webpack.config.js and Application Store setting (remote module name)
 [cols="1a,1a",options="header"]
 |===
 | webpack.config.js
@@ -155,6 +222,7 @@ Navigate to the Application Store → open the App → click on the 'Components'
 
 |
 ----
+...
 const config = withModuleFederationPlugin({
   name: 'onecx-workspace-ui',
   filename: 'remoteEntry.js',
@@ -163,13 +231,15 @@ const config = withModuleFederationPlugin({
     ...
     }
   }),
+...
 ----
 |
 image::images/application_store_remote_module_name.png[]
 |===
 
-Verify if the tag name for the component is the same as the tag name set in the Application Store.
+* Verify if the tag name for the component is the same as the tag name set in the Application Store.
 
+.Example values.yaml and Application Store setting (tag name)
 [cols="1a,1a",options="header"]
 |===
 | values.yaml
@@ -178,6 +248,7 @@ Verify if the tag name for the component is the same as the tag name set in the 
 |
 .values.yaml
 ----
+...
 microfrontend:
   enabled: true
   specs:
@@ -192,17 +263,18 @@ microfrontend:
       endpoints:
         - name: workspace-detail
           path: /{workspace-name}
+...
 ----
-
 |
 image::images/application_store_remote_module_tag-name.png[]
 |===
 
 == Shell related
-Make sure you are using the latest version of the Shell
-Verify if the Angular version of the App is lower than the Shell's.
+* Make sure you are using the latest version of the Shell
 
-Go to the browser's DevTools and run in the console following command:
+* Verify if the Angular version of the App is lower than the Shell's.
+
+* Go to the browser's DevTools and run in the console following command:
 
 .DevTools Console
 ----
