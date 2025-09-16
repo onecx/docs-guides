@@ -52,3 +52,58 @@ local_mfe:
 Now you can start your application with `npm start` and restart your containers with `docker compose --profile base up -d`. Every change in the application should be reflected immediately under `http://local-proxy/onecx-shell/admin/helloWorld/hello`.
 
 If you want to run multiple applications on different ports, see the xref:run_multiple_apps.adoc[Running Multiple Local Apps Simultaneously] section.
+
+[#troubleshooting]
+== Troubleshooting
+
+[#angular-ngdevmode-error]
+=== Angular ngDevMode is not defined Error
+
+When running your Angular application, you may see the following error in the browser console:
+
+`hook.js:608 ERROR ReferenceError: ngDevMode is not defined`
+
+This error occurs when the global variable `ngDevMode`, which Angular uses to enable development mode features, is missing from the runtime environment. This is often due to Webpack not injecting the variable during the build process.
+
+*How to fix:*
+
+To resolve this, ensure that `ngDevMode` is defined in your Webpack configuration. You can do this by using the `DefinePlugin` to set the value based on your environment.
+
+First set the environment variable in your Dockerfile:
+
+[source,dockerfile]
+----
+ENV NODE_ENV production
+----
+
+Then add the following code to the webpack.config.js:
+
+[source,javascript]
+----
+const webpack = require('webpack');
+const isProduction = process.env.NODE_ENV === 'production';
+
+module.exports = {
+  ...
+  plugins: [
+    new webpack.DefinePlugin({
+      ngDevMode: JSON.stringify(!isProduction)
+    }),
+    ...
+  ],
+  ...
+};
+----
+
+And in your package.json scripts, ensure ngDevMode is set as production in build time:
+
+[source,json]
+----
+"scripts": {
+  "start": "nx serve --host 0.0.0.0 --disable-host-check",
+  "build": "NODE_ENV=production nx build"
+}
+----
+
+This setup ensures that `ngDevMode` is correctly defined for both development and production builds, preventing the error.
+
