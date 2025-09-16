@@ -69,6 +69,17 @@ nx generate @onecx/nx-plugin:details hello
 ----
 NOTE: Details to generating a details page can be found link:https://onecx.github.io/docs/nx-plugins/current/general/getting_started/details-page.html[here].
 
+[#adding-create-update-page]
+==== Add a Create-Update Dialog
+
+Additionally we can add a create and update dialog for creating and updating items on the page by running:
+
+[source,sh]
+----
+nx generate @onecx/nx-plugin:create-update hello
+----
+NOTE: Details to generating a create-update dialog can be found link:https://onecx.github.io/docs/nx-plugins/current/general/getting_started/create-update-dialog.html[here].
+
 The application can now be built, tested and started by running `npm run build`, `npm run test` and `npm start`.
 
 For further customization of the app, you can refer to the general link:https://onecx.github.io/docs/[OneCX generator documentation].
