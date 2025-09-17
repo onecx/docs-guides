@@ -56,6 +56,11 @@ If you want to run multiple applications on different ports, see the xref:run_mu
 [#troubleshooting]
 == Troubleshooting
 
+[#local-changes-not-visible]
+=== Local Changes are not Visible
+
+If your local changes are not visible in the OneCX Shell, it could be due to issues with the traefik configurations with the global UI container, that might be still running. To resolve this, stop the container with `docker compose stop hello-world-ui`, so that only your local container is running.
+
 [#angular-ngdevmode-error]
 === Angular ngDevMode is not defined Error
 

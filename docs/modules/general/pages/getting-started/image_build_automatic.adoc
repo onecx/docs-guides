@@ -29,6 +29,9 @@ services:
       - default
     profiles:
       - base
+      - hello-world
+      - hello-world-ui
+      - all
 ----
 
 Now you can import the initial data in the `onecx-local-env` by running:
@@ -45,6 +48,6 @@ The application needs to be built with `npm run build` and the `onecx-local-env`
 docker compose -f hello-world.docker-compose.yaml --profile base up -d
 ----
 
-Your application will now be built and available at ``http://local-proxy/onecx-shell/admin/helloWorld/hello`` in the OneCX Shell. If you make changes in your application, you need to rebuild it with `npm run build` and restart the `onecx-local-env` with the command above.
+Your application will now be built and available at `http://local-proxy/onecx-shell/admin/helloWorld/hello` in the OneCX Shell. If you make changes in your application, you need to rebuild it with `npm run build` and restart the `onecx-local-env` with the command above.
 
-*This method of running the application may lead to potential caching issues that could prevent changes from being reflected immediately.*
+*This method of running the application may lead to potential caching issues that could prevent changes from being reflected immediately.* In case of such issues, you can rebuild the UI with `npm run build` and then run `docker compose build && docker compose -f hello-world.docker-compose.yaml --profile base up -d`. You can check in the logs of the `hello-world-ui` container if the new build was used by running `docker logs hello-world-ui`.

@@ -43,4 +43,4 @@ docker compose -f hello-world.docker-compose.yaml --profile base up -d
 
 Now the local image is used and changes in the application should be reflected under `http://local-proxy/onecx-shell/admin/helloWorld/hello` after rebuilding the image of the application with `docker build --no-cache -t helloworld_local .`.
 
-If you want to your application to reflect changes immediately without rebuilding the image each time, you can set up your application for hot reloading by following these steps in the xref:enable_hot_reload[Enable Hot Reload] section.
+If you want to your application to reflect changes immediately without rebuilding the image each time, you can set up your application for hot reloading by following these steps in the xref:./enable_hot_reload.adoc[Enable Hot Reload] section.
