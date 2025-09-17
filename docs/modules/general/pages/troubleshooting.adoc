@@ -101,6 +101,9 @@ shared: share({
     '@ngx-translate/core': { requiredVersion: 'auto' },
     primeng: { requiredVersion: 'auto', includeSecondaries: true },
     '@onecx/accelerator': { requiredVersion: 'auto', includeSecondaries: true },
+    // MISSING: '@angular/core'
+    // MISSING: 'rxjs'
+    // MISSING: '@onecx/integration-interface'
     ...
   }),
 ...
@@ -108,11 +111,7 @@ shared: share({
 |===
 
 == Installed Packages
-* Verify the OneCX library version in your package.json
-
-** Make sure you have the latest minor version of OneCX libraries which you can look up in npmjs.com.
-
-** Verify if all shared packages have the caret '^' sign in your package.json (except for rxjs it is a tilde '~').
+* Verify if all shared packages have the caret '^' sign in your package.json (except for rxjs it is a tilde '~').
 
 * For that, first check your webpack.config.js which packages are being shared:
 
@@ -143,7 +142,7 @@ shared: share({
 ...
 ----
 
-* Then check if the correct range (caret '^' or tilde '~' for rxjs) is present for the shared packages in your package.json
+* Then check if the correct range (caret '^' or tilde '~' for rxjs) is present for the shared packages in your package.json:
 
 .Example package.json
 [cols="1a,1a",options="header"]
@@ -212,7 +211,7 @@ Do a clean install and build of the App:
 == Application Setup/Settings
 * Verify if the Remote Module name in the webpack.config.js is the same as the Remote Module setting in the Application Store.
 
-* Navigate to the Application Store → open the App → click on the 'Components' tab → open the 'Module' UI Component → check App ID
+* Navigate to the Application Store → open the App → click on the 'Components' tab → open the 'Module' UI Component → check App ID:
 
 .Example webpack.config.js and Application Store setting (remote module name)
 [cols="1a,1a",options="header"]
@@ -237,7 +236,7 @@ const config = withModuleFederationPlugin({
 image::images/application_store_remote_module_name.png[]
 |===
 
-* Verify if the tag name for the component is the same as the tag name set in the Application Store.
+* Verify if the tag name for the component is the same as the tag name set in the Application Store:
 
 .Example values.yaml and Application Store setting (tag name)
 [cols="1a,1a",options="header"]
@@ -270,7 +269,7 @@ image::images/application_store_remote_module_tag-name.png[]
 |===
 
 == Shell related
-* Make sure you are using the latest version of the Shell
+* Make sure you are using the latest version of the Shell.
 
 * Verify if the Angular version of the App is lower than the Shell's.
 
@@ -280,7 +279,9 @@ image::images/application_store_remote_module_tag-name.png[]
 ----
 window['onecxWebpackContainer']
 ----
-You will get a list of all the shared packages
-Check e.g. the @angular/core entry to see the versions.
+
+* You will get a list of all the shared packages.
+
+* Check e.g. the @angular/core entry to see the versions:
 
 image::images/devtools_webpack_shared_packages.png[]
