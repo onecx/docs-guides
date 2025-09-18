@@ -145,6 +145,8 @@ NOTE: More details to the onecx-local-env-cli can be found link:https://github.c
 [#creating-the-bff]
 == Creating the BFF
 
+First clone the bff repository: `https://github.com/onecx/onecx-hello-world-bff.git` and navigate into the folder.
+
 As we did for the UI, we can sync the app with your local environment for the bff and add the bff to our hello-world.docker-compose.yaml as well. The src/main/helm/values.yaml path refers to the values.yaml file of the bff.
 
 [source,sh]
@@ -155,6 +157,8 @@ npx @onecx/local-env-cli docker hello-world create hello-world helloWorld -e /pa
 
 [#creating-the-svc]
 == Creating the SVC
+
+Now we can clone the svc repository: `https://github.com/onecx/onecx-hello-world-svc` and navigate into the folder.
 
 The same way as for the UI and BFF, we can sync the app with your local environment for the svc and add the svc to our hello-world.docker-compose.yaml as well. The src/main/helm/values.yaml path refers to the values.yaml file of the svc.
 
