@@ -14,4 +14,4 @@ around best practices for creating Onecx software products.
 [#getting-started]
 == Getting Started: Hello World App
 
-* xref:getting_started.adoc[Guide to create a new OneCX Hello World App]
+* xref:getting-started/getting_started.adoc[Guide to create a new OneCX Hello World App]
