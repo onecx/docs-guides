@@ -1,3 +1,4 @@
+:imagesdir: ../images
 = Troubleshooting
 
 This page helps on how to resolve common encountered issues by using OneCX.
@@ -233,7 +234,7 @@ const config = withModuleFederationPlugin({
 ...
 ----
 |
-image::../images/application_store_remote_module_name.png[]
+image::application_store_remote_module_name.png[]
 |===
 
 * Verify if the tag name for the component is the same as the tag name set in the Application Store:
@@ -265,7 +266,7 @@ microfrontend:
 ...
 ----
 |
-image::../images/application_store_remote_module_tag-name.png[]
+image::application_store_remote_module_tag-name.png[]
 |===
 
 == Shell related
@@ -284,4 +285,4 @@ window['onecxWebpackContainer']
 
 * Check e.g. the @angular/core entry to see the versions:
 
-image::../images/devtools_webpack_shared_packages.png[]
+image::devtools_webpack_shared_packages.png[]
