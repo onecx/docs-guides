@@ -3,7 +3,7 @@
 
 To avoid caching issues and ensure the latest code is always used, it is recommended to manually build the Docker image after building your app locally. This can be done for the UI, BFF, and SVC.
 
-First, go to your application and *remove cache and dist folders to avoid using cached images*. For changes in the UI, you can run:
+First, go to your application and *remove any cache and build folders to avoid using cached images*. In the UI you should for example delete the `dist` folder and nx cache by running the following command:
 
 [source,sh]
 ----
