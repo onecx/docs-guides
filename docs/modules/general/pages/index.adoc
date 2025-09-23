@@ -15,3 +15,4 @@ around best practices for creating Onecx software products.
 == Getting Started: Hello World App
 
 * xref:getting-started/getting_started.adoc[Guide to create a new OneCX Hello World App]
+* xref:getting-started/running_custom_apps_overview.adoc[Guide to run custom Applications in OneCX]
