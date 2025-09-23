@@ -17,7 +17,8 @@ Then you can build your application (e.g. `npm run build` for the UI) and create
 docker build --no-cache -t helloworld_local .
 ----
 
-Now in the `onecx-local-env` navigate to the .env file at the same level as your `hello-world.docker-compose.yaml`. If you want to use a local image for the UI, the image name for `HELLO_WORLD_UI` should match the name you used when building the local docker image in your application. So in this case, the images would look like this:
+Now in the `onecx-local-env` navigate to the .env file at the same level as your `hello-world.docker-compose.yaml`. If the .env file does not exist, please create it first.
+If you want to use a local image for the UI, the image name for `HELLO_WORLD_UI` should match the name you used when building the local docker image in your application. So in this case, the images would look like this:
 
 [source,env]
 ----
