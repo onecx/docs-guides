@@ -1,14 +1,21 @@
 :imagesdir: ../images
+
+:idprefix:
+:idseparator: -
+
 = Troubleshooting
 
 This page helps on how to resolve common encountered issues by using OneCX.
 
+[#general-troubleshooting-steps]
 == General Troubleshooting Steps
 When you encounter an issue like an injection error, application is not loading, blank page, etc., please do the following steps first which should resolve most of the common issues:
 
+[#onecx-compatibility]
 == OneCX Compatibility
 Make sure that the App is OneCX compatible and you followed the guidelines.
 
+[#webpack-configuration]
 == Webpack Configuration
 * Verify if all necessary packages are shared in your webpack.config.js:
 
@@ -111,6 +118,7 @@ shared: share({
 ----
 |===
 
+[#installed-packages]
 == Installed Packages
 * Verify if all shared packages have the caret '^' sign in your package.json (except for rxjs it is a tilde '~').
 
@@ -194,6 +202,7 @@ shared: share({
 ----
 |===
 
+[#clean-install-build]
 == Clean Install and Build
 Do a clean install and build of the App:
 
@@ -209,6 +218,7 @@ Do a clean install and build of the App:
 ----
 * Build the App
 
+[#application-setup-settings]
 == Application Setup/Settings
 * Verify if the Remote Module name in the webpack.config.js is the same as the Remote Module setting in the Application Store.
 
@@ -269,6 +279,7 @@ microfrontend:
 image::application_store_remote_module_tag-name.png[]
 |===
 
+[#shell-related]
 == Shell related
 * Make sure you are using the latest version of the Shell.
 
