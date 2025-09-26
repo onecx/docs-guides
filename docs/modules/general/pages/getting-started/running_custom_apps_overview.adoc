@@ -29,7 +29,7 @@ In addition to the methods mentioned above, you can configure your application f
 
 * If you want to your application to reflect changes immediately without rebuilding the image each time and only starting the application once, you can set up your application for hot reloading: xref:./enable_hot_reload.adoc[Hot Reload]
 
-* You can also run and test multiple local applications simultaneously: xref:./running_multiple_apps.adoc[Multiple Applications]
+* You can also run and test multiple local applications simultaneously: xref:./run_multiple_apps.adoc[Multiple Applications]
 
 [#testing-changes-to-existing-onecx-core-apps]
 == 4. Testing Changes to Existing OneCX Core Apps
