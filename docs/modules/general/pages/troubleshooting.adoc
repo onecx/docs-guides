@@ -99,26 +99,6 @@ Make sure that the App is OneCX compatible and you followed the guidelines.
 ...
 ----
 
-* In this example you can see the difference between a minified and a non-minified NullInjectorError message in the console.
-
-.Example NullInjectorError
-[cols="1a,1a",options="header"]
-|===
-| minified
-| non-minified
-
-|
-----
-ERROR NullInjectorError: R3InjectorError[PortalDialogService -> i -> i -> i]: 
-  NullInjectorError: No provider for i!
-----
-|
-----
-ERROR NullInjectorError: R3InjectorError[i -> i -> i -> i]: 
-  NullInjectorError: No provider for i!
-----
-|===
-
 * In this example you can see the difference between a minified and a non-minified code snippet in the DevTool's Sources tab.
 
 .Example code snippet in DevTool's Sources tab
@@ -175,6 +155,53 @@ search(formValue) {
 ...
 ----
 |===
+
+* In this example you can see the difference between a minified and a non-minified NullInjectorError message in the console.
+
+.Example NullInjectorError non-minified in App
+[cols="1a,1a",options="header"]
+|===
+| minified
+| non-minified
+
+|
+----
+ERROR NullInjectorError: R3InjectorError[PortalDialogService -> i -> i -> i]: 
+  NullInjectorError: No provider for i!
+----
+|
+----
+ERROR NullInjectorError: R3InjectorError[i -> i -> i -> i]: 
+  NullInjectorError: No provider for i!
+----
+|===
+
+* In cases like above you are still seeing names like "i" in the non-minified error message, then you should additionally disable the minified build for the Shell locally, too.
+** Clone the Shell repository `https://github.com/onecx/onecx-shell-ui`
+** Run `npm install`
+** Set "optimization" to false in the project.json file of the Shell.
+** Depending on your App's Angular version, set the "optimization" option in the corresponding `pre_loaders/angular-<version>/project.json` file.
+** E.g.: for Angular 18 in the `pre_loaders/angular-18/project.json`
+** Then to start Shell locally, refer to xref:getting-started/image_build_automatic.adoc[Automatic Image Build] which builds from your local source code each time you run `docker compose` or xref:getting-started/image_build_manual.adoc#manual-image-build[Manual Image Build] for manual image building.
+
+.Example NullInjectorError non-minified in App + Shell
+[cols="1a,1a",options="header"]
+|===
+| minified
+| non-minified
+
+|
+----
+ERROR NullInjectorError: R3InjectorError[PortalDialogService -> i -> i -> i]: 
+  NullInjectorError: No provider for i!
+----
+|
+----
+ERROR NullInjectorError: R3InjectorError[PortalDialogService -> DialogService -> DialogService -> DialogService]: 
+  NullInjectorError: No provider for DialogService!
+----
+|===
+
 
 [#webpack-configuration]
 == Webpack Configuration
