@@ -187,8 +187,8 @@ ERROR NullInjectorError: R3InjectorError[i -> i -> i -> i]:
 .Example NullInjectorError non-minified in App + Shell
 [cols="1a,1a",options="header"]
 |===
-| minified
-| non-minified
+| App non-minified
+| App + Shell non-minified
 
 |
 ----
