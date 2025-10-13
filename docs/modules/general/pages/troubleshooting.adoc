@@ -485,3 +485,7 @@ window['onecxWebpackContainer']
 * Check e.g. the @angular/core entry to see the versions:
 
 image::devtools_webpack_shared_packages.png[]
+
+[#compilation-must-be-instance-of-compilation]
+== TypeError: The 'compilation' argument must be an instance of Compilation
+The error typically occurs when there's a mismatch between *webpack version* and *@angular-architects/module-federation* version
