@@ -485,3 +485,7 @@ window['onecxWebpackContainer']
 * Check e.g. the @angular/core entry to see the versions:
 
 image::devtools_webpack_shared_packages.png[]
+
+[#compilation-must-be-instance-of-compilation]
+== TypeError: The 'compilation' argument must be an instance of Compilation
+The error typically occurs when there's more than 1 version of webpack used by the packages. It is a common issue if the `@angular-devkit/build-angular` library is used. To resolve the issue check the webpack versions requested by the packages and adjust so only one version remains. In order to check webpack versions execute `npm ls webpack` command. This command is going to show the exact package version used per dependency.
